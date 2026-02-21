@@ -17,10 +17,7 @@ namespace Ecommerce.Domain.Entities
 
         protected Address() { }
 
-        public Address(
-        Guid customerId,
-        AddressTypeEnum addressType,
-        AddressValueObject fullAddress)
+        public Address(Guid customerId, AddressTypeEnum addressType, AddressValueObject fullAddress)
         {
             Guard.AgainstEmptyGuid(customerId, nameof(customerId));
 

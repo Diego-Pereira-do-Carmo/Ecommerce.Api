@@ -1,5 +1,6 @@
 ﻿
 using Ecommerce.Domain.Entities;
+using Ecommerce.Infrastructure.Persistence.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -39,6 +40,8 @@ namespace Ecommerce.Infrastructure.Persistence.EntitiesConfigurations
             builder.HasIndex(e => e.EntityCode)
                    .IsUnique()
                    .HasDatabaseName("ix_entity_metadata_code");
+
+            new EntityMetadataSeeder().Seed(builder);
         }
     }
 }

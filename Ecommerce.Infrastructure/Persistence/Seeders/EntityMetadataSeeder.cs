@@ -3,13 +3,13 @@ using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Entities.Base;
 using Ecommerce.Infrastructure.Exceptions;
 using Ecommerce.Infrastructure.Persistence.Seeders.Base;
-using System.Reflection;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ecommerce.Infrastructure.Persistence.Seeders
 {
     internal class EntityMetadataSeeder : BaseSeeder<EntityMetadata>
     {
-        public override IEnumerable<EntityMetadata> GetSeedData()
+        public override void Seed(EntityTypeBuilder<EntityMetadata> builder)
         {
             var domainAssembly = typeof(BaseEntity).Assembly;
 
@@ -45,7 +45,12 @@ namespace Ecommerce.Infrastructure.Persistence.Seeders
                     throw new SeedingException(name, "Colisão crítica de GUID detectada.", $"O ID {guid} já existe. Verifique se há nomes de classes duplicados.");
                 }
 
-                yield return new EntityMetadata(guid, name, code);
+                builder.HasData(new
+                {
+                    Id = guid,
+                    EntityName = name,
+                    EntityCode = code,
+                });
             }
         }
     }

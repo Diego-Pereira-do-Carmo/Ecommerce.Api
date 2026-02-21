@@ -60,12 +60,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -153,12 +153,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -249,12 +249,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -334,12 +334,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -484,12 +484,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -602,12 +602,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -728,8 +728,8 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
@@ -740,7 +740,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         .HasColumnName("gender_type")
                         .HasColumnOrder(6);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -856,7 +856,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
                     b.Property<bool>("IsDeleted")
@@ -965,12 +965,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -1027,7 +1027,7 @@ namespace Ecommerce.Infrastructure.Migrations
                             Id = new Guid("d1de51ec-deea-cfc8-7f85-21794fe22deb"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000001"),
                             CreatedOn = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Define o estado de pendente no ciclo de vida do processamento de e-mails.",
+                            Description = "Define o estado de pendente no ciclo de vida de e-mails.",
                             Flag = "#PENDENTE",
                             FriendlyCode = "EMAS-61294",
                             IsActive = true,
@@ -1039,7 +1039,7 @@ namespace Ecommerce.Infrastructure.Migrations
                             Id = new Guid("1e8f3a82-407b-020e-fc4b-463f4e2cbd72"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000001"),
                             CreatedOn = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Define o estado de enviado no ciclo de vida do processamento de e-mails.",
+                            Description = "Define o estado de enviado no ciclo de vida de e-mails.",
                             Flag = "#ENVIADO",
                             FriendlyCode = "EMAS-08303",
                             IsActive = true,
@@ -1051,7 +1051,7 @@ namespace Ecommerce.Infrastructure.Migrations
                             Id = new Guid("9b513552-8e21-ad83-547a-a46ba17bf017"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000001"),
                             CreatedOn = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Define o estado de falha no ciclo de vida do processamento de e-mails.",
+                            Description = "Define o estado de falha no ciclo de vida de e-mails.",
                             Flag = "#FALHA",
                             FriendlyCode = "EMAS-23153",
                             IsActive = true,
@@ -1063,7 +1063,7 @@ namespace Ecommerce.Infrastructure.Migrations
                             Id = new Guid("11155bbf-75ee-434f-b2bc-f1088a184592"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000001"),
                             CreatedOn = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Define o estado de entregue no ciclo de vida do processamento de e-mails.",
+                            Description = "Define o estado de entregue no ciclo de vida de e-mails.",
                             Flag = "#ENTREGUE",
                             FriendlyCode = "EMAS-11178",
                             IsActive = true,
@@ -1382,15 +1382,15 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
                     b.Property<Guid>("InvoiceStatusId")
                         .HasColumnType("uuid");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -1524,12 +1524,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -1671,12 +1671,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -1864,12 +1864,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -2023,12 +2023,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -2135,12 +2135,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -2335,12 +2335,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -2445,12 +2445,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -2572,12 +2572,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -2745,8 +2745,8 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
@@ -2761,7 +2761,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         .HasColumnName("installments")
                         .HasColumnOrder(2);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -2925,12 +2925,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -3029,8 +3029,8 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
@@ -3047,7 +3047,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         .HasColumnName("icon_url")
                         .HasColumnOrder(6);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -3159,12 +3159,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -3325,8 +3325,8 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
@@ -3335,7 +3335,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         .HasColumnName("full_description")
                         .HasColumnOrder(4);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -3440,12 +3440,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -3530,12 +3530,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -3666,12 +3666,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -3782,8 +3782,8 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
@@ -3792,7 +3792,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         .HasColumnName("helpful_votes")
                         .HasColumnOrder(7);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -3942,12 +3942,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -4052,12 +4052,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -4195,12 +4195,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -4331,12 +4331,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -4420,12 +4420,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -4534,12 +4534,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -4666,12 +4666,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -4762,12 +4762,12 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)
@@ -4876,8 +4876,8 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     b.Property<string>("FriendlyCode")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("friendly_code")
                         .HasColumnOrder(102);
 
@@ -4888,7 +4888,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         .HasColumnName("full_name")
                         .HasColumnOrder(4);
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true)

@@ -1,6 +1,5 @@
 ﻿
 using Ecommerce.Domain.Entities;
-using Ecommerce.Infrastructure.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.Infrastructure.Persistence.Context
@@ -56,7 +55,6 @@ namespace Ecommerce.Infrastructure.Persistence.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(EcommerceDbContext).Assembly);
-            modelBuilder.ApplySeeders(typeof(EcommerceDbContext).Assembly);
         }
     }
 }

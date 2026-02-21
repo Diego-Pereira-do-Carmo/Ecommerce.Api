@@ -1,6 +1,7 @@
 ﻿
 using Ecommerce.Infrastructure.Exceptions;
 using Ecommerce.Infrastructure.Persistence.Seeders.SeederInterface;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Ecommerce.Infrastructure.Persistence.Seeders.Base
 {
     internal abstract class BaseSeeder<T> : ISeeder<T> where T : class
     {
-        public abstract IEnumerable<T> GetSeedData();
+        public abstract void Seed(EntityTypeBuilder<T> builder);
 
         protected Guid GenerateDeterministicGuid(string input)
         {

@@ -29,7 +29,7 @@ namespace Ecommerce.Infrastructure.Persistence.EntitiesConfigurations.Base
             builder.Property(x => x.FriendlyCode)
                    .HasColumnName("friendly_code")
                    .HasColumnOrder(102)
-                   .HasMaxLength(10)
+                   .HasMaxLength(11)
                    .IsRequired();
 
             builder.Property(x => x.CreatedOn)

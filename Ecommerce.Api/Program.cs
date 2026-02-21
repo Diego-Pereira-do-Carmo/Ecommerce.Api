@@ -1,3 +1,5 @@
+using Ecommerce.Domain.Entities;
+using Ecommerce.Domain.Entities.Base;
 using Ecommerce.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,3 +33,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

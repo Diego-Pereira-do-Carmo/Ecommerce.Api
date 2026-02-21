@@ -26,7 +26,6 @@ namespace Ecommerce.Domain.Entities
 
             Name = name.Trim();
             Description = description.Trim();
-            ModifiedOn = DateTime.UtcNow;
         }
     }
 }

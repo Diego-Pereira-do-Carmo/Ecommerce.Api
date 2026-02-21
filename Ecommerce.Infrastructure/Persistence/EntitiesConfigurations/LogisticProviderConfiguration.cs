@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ecommerce.Infrastructure.Persistence.EntitiesConfigurations
 {
-    internal class LogisticsProviderConfiguration : BaseEntityConfiguration<LogisticProvider>
+    internal class LogisticProviderConfiguration : BaseEntityConfiguration<LogisticProvider>
     {
         public override void Configure(EntityTypeBuilder<LogisticProvider> builder)
         {
