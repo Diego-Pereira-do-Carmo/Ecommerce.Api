@@ -6,6 +6,7 @@ namespace Ecommerce.Domain.ValueObjects
 {
     public record EmailAddressValueObject
     {
+        private static readonly Regex _emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         public string Value { get; init; } = string.Empty;
 
         public EmailAddressValueObject(string value)
@@ -13,10 +14,11 @@ namespace Ecommerce.Domain.ValueObjects
             Guard.AgainstNullOrEmpty(value, nameof(value));
 
             var cleanAddress = value.Trim().ToLower();
-            var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-            if (!emailRegex.IsMatch(cleanAddress))
-                throw new DomainException($"O e-mail '{value}' possui um formato inválido.");
+            if (string.IsNullOrWhiteSpace(cleanAddress) || !_emailRegex.IsMatch(cleanAddress))
+            {
+                throw new DomainException($"E-mail em formato inválido.");
+            }
 
             Value = cleanAddress;
         }

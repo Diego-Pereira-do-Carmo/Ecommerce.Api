@@ -28,7 +28,7 @@ namespace Ecommerce.Infrastructure.Persistence.Repositories.Base
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default, params Expression<Func<T, object?>>[] includes)
+        public Task<IEnumerable<T>> FindWithIncludesAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default, params Expression<Func<T, object?>>[] includes)
         {
             throw new NotImplementedException();
         }
@@ -43,7 +43,7 @@ namespace Ecommerce.Infrastructure.Persistence.Repositories.Base
             throw new NotImplementedException();
         }
 
-        public Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default, params Expression<Func<T, object?>>[] includes)
+        public Task<T?> GetByIdWithIncludesAsync(Guid id, CancellationToken cancellationToken = default, params Expression<Func<T, object?>>[] includes)
         {
             throw new NotImplementedException();
         }

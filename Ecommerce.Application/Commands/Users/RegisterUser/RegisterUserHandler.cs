@@ -25,7 +25,7 @@ namespace Ecommerce.Application.Commands.Users.RegisterUser
         public async Task<bool> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
         {
             var emailVO = new EmailAddressValueObject(command.Email);
-            var mobilePhoneVO = new PhoneNumberValueObject("(11) 97731-3094");
+            var mobilePhoneVO = new PhoneNumberValueObject(command.MobilePhone);
 
             var emailExists = await _userRepository.AnyAsync(u => u.EmailAddress.Value == emailVO.Value);
 

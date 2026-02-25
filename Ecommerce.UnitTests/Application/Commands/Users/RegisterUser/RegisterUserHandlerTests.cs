@@ -1,6 +1,5 @@
 ﻿
 using Ecommerce.Application.Commands.Users.RegisterUser;
-using Ecommerce.Domain.DomainService;
 using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Interfaces;
 using Ecommerce.Domain.Interfaces.Repositories;
@@ -42,7 +41,7 @@ namespace Ecommerce.UnitTests.Application.Commands.Users.RegisterUser
         }
 
         [Fact]
-        public async Task Handle_WhenEmailAlreadyNotExists_ShouldReturnTrue()
+        public async Task Handle_WhenEmailDoesNotExist_ShouldReturnTrue()
         {
             var command = new RegisterUserCommand("Ciclano", "de Tal", "ciclano@email.com", "(11) 94002-8933", "Senha@123!");
 

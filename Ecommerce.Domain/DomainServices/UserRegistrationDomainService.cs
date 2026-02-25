@@ -5,7 +5,7 @@ using Ecommerce.Domain.Interfaces.Services;
 using Ecommerce.Domain.Utils;
 using Ecommerce.Domain.ValueObjects;
 
-namespace Ecommerce.Domain.DomainService
+namespace Ecommerce.Domain.DomainServices
 {
     public class UserRegistrationDomainService : IUserRegistrationDomainService
     {
