@@ -1,10 +1,13 @@
 ﻿
 using Ecommerce.Domain.Exceptions;
+using System.Text.RegularExpressions;
 
 namespace Ecommerce.Domain.Utils
 {
     public static class Guard
     {
+        private static readonly Regex _passwordRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", RegexOptions.Compiled);
+
         public static void AgainstNullOrEmpty(string? value, string fieldName)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -40,6 +43,14 @@ namespace Ecommerce.Domain.Utils
             if (string.IsNullOrWhiteSpace(url) || !Uri.TryCreate(url.Trim(), UriKind.Absolute, out _))
             {
                 throw new DomainException($"{fieldName} não é uma URL válida.");
+            }
+        }
+
+        public static void AgainstWeakPassword(string password, string fieldName)
+        {
+            if (string.IsNullOrWhiteSpace(password) || !_passwordRegex.IsMatch(password))
+            {
+                throw new DomainException($"{fieldName} a senha não atende ao padões requeridos");
             }
         }
     }

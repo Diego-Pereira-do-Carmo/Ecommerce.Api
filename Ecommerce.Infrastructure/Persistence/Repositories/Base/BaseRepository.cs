@@ -18,7 +18,7 @@ namespace Ecommerce.Infrastructure.Persistence.Repositories.Base
         }
 
 
-        public Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
+        public Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
@@ -28,27 +28,27 @@ namespace Ecommerce.Infrastructure.Persistence.Repositories.Base
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate, params Expression<Func<T, object?>>[] includes)
+        public Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default, params Expression<Func<T, object?>>[] includes)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+        public Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<T?> GetByIdAsync(Guid id)
+        public Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<T?> GetByIdAsync(Guid id, params Expression<Func<T, object?>>[] includes)
+        public Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default, params Expression<Func<T, object?>>[] includes)
         {
             throw new NotImplementedException();
         }
 
-        public Task InsertAsync(T entity)
+        public Task InsertAsync(T entity, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }

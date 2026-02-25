@@ -19,7 +19,7 @@ namespace Ecommerce.Domain.Entities
         public DateTime? DateAccessTry { get; private set; }
         public DateTime? LockoutEnd { get; private set; }
         public bool IsEmailAddressConfirmed { get; private set; } = false;
-        public string SecurityStamp { get; private set; }
+        public string SecurityStamp { get; private set; } = Guid.NewGuid().ToString();
 
         public Customer? Customer { get; private set; }
         public ICollection<AccessProfileUser> AccessProfileUsers { get; private set; } = new List<AccessProfileUser>();
@@ -27,10 +27,9 @@ namespace Ecommerce.Domain.Entities
 
         protected User()
         {
-            SecurityStamp = Guid.NewGuid().ToString();
         }
 
-        public User(string userName, string firstName, string lastName, EmailAddressValueObject email, PhoneNumberValueObject mobile, string passwordHash)
+        internal User(string userName, string firstName, string lastName, EmailAddressValueObject email, PhoneNumberValueObject mobile, string passwordHash)
         {
             Guard.AgainstNullOrEmpty(userName, nameof(userName));
             Guard.AgainstNullOrEmpty(firstName, nameof(firstName));
@@ -46,7 +45,6 @@ namespace Ecommerce.Domain.Entities
             PasswordHash = passwordHash;
             AccessFailedCount = 0;
             IsEmailAddressConfirmed = false;
-            SecurityStamp = Guid.NewGuid().ToString();
         }
     }
 }

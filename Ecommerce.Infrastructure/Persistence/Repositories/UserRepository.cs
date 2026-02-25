@@ -1,6 +1,7 @@
 ﻿
 using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Interfaces.Repositories;
+using Ecommerce.Domain.ValueObjects;
 using Ecommerce.Infrastructure.Persistence.Context;
 using Ecommerce.Infrastructure.Persistence.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +15,9 @@ namespace Ecommerce.Infrastructure.Persistence.Repositories
         {
         }
 
-        public async Task<User?> GetByEmailAsync(string email)
+        public async Task<User?> GetByEmailAsync(EmailAddressValueObject emailVO, CancellationToken cancellationToken = default)
         {
-            return await DbSetContext.FirstOrDefaultAsync(u => u.EmailAddress.Value == email);
+            return await DbSetContext.FirstOrDefaultAsync(u => u.EmailAddress == emailVO, cancellationToken);
         }
     }
 }

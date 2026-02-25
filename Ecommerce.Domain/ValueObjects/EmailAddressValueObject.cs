@@ -1,5 +1,5 @@
-﻿
-using Ecommerce.Domain.Exceptions;
+﻿using Ecommerce.Domain.Exceptions;
+using Ecommerce.Domain.Utils;
 using System.Text.RegularExpressions;
 
 namespace Ecommerce.Domain.ValueObjects
@@ -10,8 +10,7 @@ namespace Ecommerce.Domain.ValueObjects
 
         public EmailAddressValueObject(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new DomainException("O endereço de e-mail não pode estar vazio.");
+            Guard.AgainstNullOrEmpty(value, nameof(value));
 
             var cleanAddress = value.Trim().ToLower();
             var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -20,6 +19,13 @@ namespace Ecommerce.Domain.ValueObjects
                 throw new DomainException($"O e-mail '{value}' possui um formato inválido.");
 
             Value = cleanAddress;
+        }
+
+        public string GetUserName()
+        {
+            Guard.AgainstNullOrEmpty(Value, nameof(Value));
+
+            return Value.Split('@')[0];
         }
 
         public override string ToString() => Value;
