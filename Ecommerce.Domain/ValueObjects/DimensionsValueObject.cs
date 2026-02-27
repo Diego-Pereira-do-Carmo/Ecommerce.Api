@@ -17,7 +17,7 @@ namespace Ecommerce.Domain.ValueObjects
             Guard.AgainstMinValue(length, 0.01m, nameof(length));
             Guard.AgainstMinValue(width, 0.01m, nameof(width));
             Guard.AgainstMinValue(height, 0.01m, nameof(height));
-            Guard.AgainstMinValue(weight, 0.001m, nameof(weight));
+            Guard.AgainstMinValue(weight, 0.01m, nameof(weight));
 
             Length = length;
             Width = width;
@@ -25,6 +25,7 @@ namespace Ecommerce.Domain.ValueObjects
             Weight = weight;
         }
 
+        public override string ToString() => $"{Length:F2} L x {Width:F2} C x {Height:F2} A cm - {Weight:F2} kg";
         public decimal VolumeInCubicMeters => (Length * Width * Height) / _cubicMetersConversionFactor;
     }
 }

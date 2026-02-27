@@ -1,6 +1,4 @@
-﻿
-
-using Ecommerce.Infrastructure.Security;
+﻿using Ecommerce.Infrastructure.Security;
 using FluentAssertions;
 
 namespace Ecommerce.UnitTests.Infrastructure.Security

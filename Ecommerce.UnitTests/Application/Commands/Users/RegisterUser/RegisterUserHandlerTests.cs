@@ -1,5 +1,4 @@
-﻿
-using Ecommerce.Application.Commands.Users.RegisterUser;
+﻿using Ecommerce.Application.Commands.Users.RegisterUser;
 using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Interfaces;
 using Ecommerce.Domain.Interfaces.Repositories;

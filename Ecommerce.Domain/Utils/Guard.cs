@@ -22,7 +22,7 @@ namespace Ecommerce.Domain.Utils
         public static void AgainstEmptyGuid(Guid value, string fieldName)
         {
             if (value == Guid.Empty)
-                throw new DomainException($"{fieldName} deve ser um ID válido.");
+                throw new DomainException($"{fieldName} deve ser um Id válido.");
         }
 
         public static void AgainstMinValue(decimal value, decimal min, string fieldName)
@@ -34,7 +34,7 @@ namespace Ecommerce.Domain.Utils
         public static void AgainstMinDate(DateTime date, DateTime minDate, string fieldName)
         {
             if (date < minDate)
-                throw new DomainException($"{fieldName} ({date:dd/MM/yyyy}) não pode ser anterior a {minDate:dd/MM/yyyy}");
+                throw new DomainException($"{fieldName} {date:dd/MM/yyyy} não pode ser anterior a {minDate:dd/MM/yyyy}");
         }
 
         public static void AgainstInvalidUrl(string url, string fieldName)
@@ -49,7 +49,7 @@ namespace Ecommerce.Domain.Utils
         {
             if (string.IsNullOrWhiteSpace(password) || !_passwordRegex.IsMatch(password))
             {
-                throw new DomainException($"{fieldName} a senha não atende ao padões requeridos");
+                throw new DomainException($"{fieldName} a senha não atende aos padrões requeridos.");
             }
         }
     }

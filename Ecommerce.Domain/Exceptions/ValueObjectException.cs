@@ -1,7 +1,7 @@
 ﻿
 namespace Ecommerce.Domain.Exceptions
 {
-    public class ValueObjectException : Exception
+    public class ValueObjectException : DomainException
     {
         public ValueObjectException(string message) : base(message) { }
     }

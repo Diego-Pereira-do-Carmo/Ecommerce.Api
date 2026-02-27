@@ -99,7 +99,7 @@ namespace Ecommerce.Domain.ValueObjects
             {
                 CustomerTypeEnum.Physical => FormatCPF(Number),
                 CustomerTypeEnum.Legal => FormatCNPJ(Number),
-                _ => string.Empty
+                _ => throw new DomainException("Tipo invalido deve ser pessoa fisica ou juridica")
             };
         }
 

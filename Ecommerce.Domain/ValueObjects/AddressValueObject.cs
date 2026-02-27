@@ -1,5 +1,4 @@
-﻿
-using Ecommerce.Domain.Exceptions;
+﻿using Ecommerce.Domain.Exceptions;
 using Ecommerce.Domain.Utils;
 
 namespace Ecommerce.Domain.ValueObjects
@@ -47,7 +46,7 @@ namespace Ecommerce.Domain.ValueObjects
         }
 
         public override string ToString() =>
-            $"{Street}, {Number}{(string.IsNullOrEmpty(Complement) ? "" : " - " + Complement)}, {District}, {City} - {State} - {Country}, {PostalCode}";
+            $"{Street}, {Number}{(string.IsNullOrEmpty(Complement) ? "" : " - " + Complement)}, {District}, {City} - {State} - {Country}, {PostalCode.Substring(0, 5)}-{PostalCode.Substring(5)}";
 
         private string ValidateState(string state)
         {
