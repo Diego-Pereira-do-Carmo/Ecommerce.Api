@@ -30,13 +30,13 @@ namespace Ecommerce.Infrastructure.Persistence.EntitiesConfigurations
             builder.Property(u => u.FirstName)
                    .HasColumnName("first_name")
                    .HasColumnOrder(2)
-                   .HasMaxLength(100)
+                   .HasMaxLength(50)
                    .IsRequired();
 
             builder.Property(u => u.LastName)
                    .HasColumnName("last_name")
                    .HasColumnOrder(3)
-                   .HasMaxLength(200)
+                   .HasMaxLength(100)
                    .IsRequired();
 
             builder.Property(u => u.FullName)

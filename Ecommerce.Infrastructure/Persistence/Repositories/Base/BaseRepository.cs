@@ -1,5 +1,4 @@
-﻿
-using Ecommerce.Domain.Interfaces.Base;
+﻿using Ecommerce.Domain.Interfaces.Base;
 using Ecommerce.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -18,9 +17,9 @@ namespace Ecommerce.Infrastructure.Persistence.Repositories.Base
         }
 
 
-        public Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await DbSetContext.AnyAsync(predicate, cancellationToken);
         }
 
         public void Delete(T entity)
@@ -48,9 +47,9 @@ namespace Ecommerce.Infrastructure.Persistence.Repositories.Base
             throw new NotImplementedException();
         }
 
-        public Task InsertAsync(T entity, CancellationToken cancellationToken = default)
+        public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            await DbSetContext.AddAsync(entity, cancellationToken);
         }
 
         public void Update(T entity)

@@ -1,12 +1,13 @@
-﻿using Ecommerce.Domain.Entities;
+﻿using Ecommerce.Domain.Common;
+using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Interfaces;
 using Ecommerce.Domain.Interfaces.Repositories;
 using Ecommerce.Domain.Interfaces.Services;
-using Ecommerce.Domain.ValueObjects;
+using MediatR;
 
 namespace Ecommerce.Application.Commands.Users.RegisterUser
 {
-    public class RegisterUserHandler
+    public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result<Guid>>
     {
         private readonly IUserRegistrationDomainService _userRegistrationDomainService;
         private readonly IUserRepository _userRepository;
@@ -22,25 +23,26 @@ namespace Ecommerce.Application.Commands.Users.RegisterUser
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<bool> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(RegisterUserCommand command, CancellationToken cancellationToken = default)
         {
-            var emailVO = new EmailAddressValueObject(command.Email);
-            var mobilePhoneVO = new PhoneNumberValueObject(command.MobilePhone);
+            try
+            {
+               var exists = await _userRepository.AnyAsync(u => u.EmailAddress.Value == command.EmailAddress);
 
-            var emailExists = await _userRepository.AnyAsync(u => u.EmailAddress.Value == emailVO.Value);
+                if (exists)
+                    return Result<Guid>.Failure("E-mail já cadastrado verifique e tente novamente.");
 
-            if (emailExists) return false;
+                User user = _userRegistrationDomainService.CreateUser(command.FirstName, command.LastName, command.EmailAddress, command.MobilePhone);
 
-            User user = _userRegistrationDomainService.CreateUser(
-                emailVO.GetUserName(),
-                command.FirstName,
-                command.LastName,
-                emailVO,
-                mobilePhoneVO
-            );
+                await _userRepository.AddAsync(user);
+                await _unitOfWork.CommitAsync();
 
-            await _userRepository.InsertAsync(user);
-            return await _unitOfWork.CommitAsync();
+                return Result<Guid>.Success(user.Id, "Cadastro realizado com sucesso, em breve enviaremos um e-mail de confirmação");
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure("Ocorreu um erro interno, verifique e tente novamente");
+            }
         }
     }
 }

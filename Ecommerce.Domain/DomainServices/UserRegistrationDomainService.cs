@@ -1,5 +1,4 @@
-﻿
-using Ecommerce.Domain.Entities;
+﻿using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Interfaces.Security;
 using Ecommerce.Domain.Interfaces.Services;
 using Ecommerce.Domain.Utils;
@@ -16,19 +15,19 @@ namespace Ecommerce.Domain.DomainServices
             _passwordService = passwordService;
         }
 
-        public User CreateUser(string userName, string firstName, string lastName, EmailAddressValueObject email, PhoneNumberValueObject mobile)
+        public User CreateUser(string firstName, string lastName, string emailAddress, string mobilePhone)
         {
-            Guard.AgainstNullOrEmpty(userName, nameof(userName));
             Guard.AgainstNullOrEmpty(firstName, nameof(firstName));
             Guard.AgainstNullOrEmpty(lastName, nameof(lastName));
 
             var password = _passwordService.GenerateRandomPassword();
-
             Guard.AgainstWeakPassword(password, nameof(password));
-
             var hash = _passwordService.HashPassword(password);
 
-            return new User(userName, firstName, lastName, email, mobile, hash);
+            var emailVO = new EmailAddressValueObject(emailAddress);
+            var mobilePhoneVO = new PhoneNumberValueObject(mobilePhone);
+
+            return new User(emailVO.GetUserName(), firstName, lastName, emailVO, mobilePhoneVO, hash);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿
+using Ecommerce.Domain.Common;
 using System.Linq.Expressions;
 
 namespace Ecommerce.Domain.Interfaces.Base
 {
     public interface IBaseRepository<T> where T : class
     {
-        Task InsertAsync(T entity, CancellationToken cancellationToken = default);
+        Task AddAsync(T entity, CancellationToken cancellationToken = default);
         void Update(T entity);
         void Delete(T entity);
         Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);

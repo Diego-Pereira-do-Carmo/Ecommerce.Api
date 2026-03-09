@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Infrastructure.Security;
 using FluentAssertions;
+using FluentAssertions.Execution;
 
 namespace Ecommerce.UnitTests.Infrastructure.Security
 {
@@ -13,7 +14,7 @@ namespace Ecommerce.UnitTests.Infrastructure.Security
         }
 
         [Fact]
-        public void When_Hash_Password_Is_Generate_Should_Return_Valid_Hash()
+        public void Given_HashPasswordIsGenerate_Then_ReturnValidHash()
         {
             var password = "User@123456";
 
@@ -25,7 +26,7 @@ namespace Ecommerce.UnitTests.Infrastructure.Security
         }
 
         [Fact]
-        public void When_Password_With_Correct_Credentials_Should_Return_True()
+        public void Given_PasswordWithCorrectCredentials_Then_ReturnTrue()
         {
             var password = "TopSecret@123";
             var hash = _passwordService.HashPassword(password);
@@ -36,7 +37,7 @@ namespace Ecommerce.UnitTests.Infrastructure.Security
         }
 
         [Fact]
-        public void When_Password_With_Wrong_Password_Should_Return_False()
+        public void Given_PasswordWithWrongCredentials_Then_ReturnFalse()
         {
             var passwordCorrect = "TopSecret@123";
             var wrongPassword = "WrongPassword@123";
@@ -48,7 +49,7 @@ namespace Ecommerce.UnitTests.Infrastructure.Security
         }
 
         [Fact]
-        public void When_Generate_Random_Password_Should_Return_Eight_Length()
+        public void Given_GenerateRandomPassword_Then_ReturnEightLength()
         {
             const int passwordLength = 8;
             var password = _passwordService.GenerateRandomPassword();
@@ -57,11 +58,25 @@ namespace Ecommerce.UnitTests.Infrastructure.Security
         }
 
         [Fact]
-        public void When_Generate_Random_Password_Should_Not_Contain_Ambiguous_Characters()
+        public void Given_GenerateRandomPassword_Then_ShouldNotContainAmbiguousCharacters()
         {
             var password = _passwordService.GenerateRandomPassword(200);
 
             password.Should().NotContainAny("I", "O", "l", "o");
+        }
+
+        [Fact]
+        public void Given_GenerateRandomPassword_Then_ShouldMeetAllComplexityRequirements()
+        {
+            var password = _passwordService.GenerateRandomPassword();
+
+            using (new AssertionScope())
+            {
+                password.Any(char.IsUpper).Should().BeTrue();
+                password.Any(char.IsLower).Should().BeTrue();
+                password.Any(char.IsDigit).Should().BeTrue();
+                password.Any(c => "!@#$%^&*?_-".Contains(c)).Should().BeTrue();
+            }
         }
     }
 }

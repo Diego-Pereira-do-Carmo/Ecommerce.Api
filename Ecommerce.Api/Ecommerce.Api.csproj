@@ -8,10 +8,13 @@
 
   <ItemGroup>
     <None Remove="appsettings.json~RF1bd2fb17.TMP" />
+    <None Remove="Controllers\UserController.cs~RF4b51da3c.TMP" />
     <None Remove="Program.cs~RF8dc3cf9d.TMP" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="14.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Middlewares\" />
   </ItemGroup>
 

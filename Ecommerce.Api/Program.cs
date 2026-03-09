@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddRepositories(builder.Configuration);
 builder.Services.AddSecurityServices();
 builder.Services.AddDomainServices();
+builder.Services.AddApplication();
 
 
 var app = builder.Build();

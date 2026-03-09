@@ -1,5 +1,13 @@
-﻿
+﻿using Ecommerce.Domain.Common;
+using MediatR;
+
 namespace Ecommerce.Application.Commands.Users.RegisterUser
 {
-    public record RegisterUserCommand(string FirstName, string LastName, string Email, string MobilePhone, string Password);
+    public record RegisterUserCommand : IRequest<Result<Guid>>
+    {
+        public string FirstName { get; init; } = string.Empty;
+        public string LastName { get; init; } = string.Empty;
+        public string EmailAddress { get; init; } = string.Empty;
+        public string MobilePhone { get; init; } = string.Empty;
+    }
 }
