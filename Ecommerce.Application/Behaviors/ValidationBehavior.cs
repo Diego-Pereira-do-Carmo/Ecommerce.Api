@@ -22,8 +22,7 @@ namespace Ecommerce.Application.Behaviors
 
             var context = new ValidationContext<TRequest>(request);
 
-            var validationResults = await Task.WhenAll(
-                _validators.Select(v => v.ValidateAsync(context, cancellationToken)));
+            var validationResults = await Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken)));
 
             var failures = validationResults
                 .SelectMany(validationResult => validationResult.Errors)

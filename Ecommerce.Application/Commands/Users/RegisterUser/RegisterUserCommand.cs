@@ -9,5 +9,14 @@ namespace Ecommerce.Application.Commands.Users.RegisterUser
         public string LastName { get; init; } = string.Empty;
         public string EmailAddress { get; init; } = string.Empty;
         public string MobilePhone { get; init; } = string.Empty;
+
+
+        public RegisterUserCommand(string firstName, string lastName, string emailAddress, string mobilePhone)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            EmailAddress = emailAddress;
+            MobilePhone = mobilePhone;
+        }
     }
 }

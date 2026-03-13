@@ -25,24 +25,17 @@ namespace Ecommerce.Application.Commands.Users.RegisterUser
 
         public async Task<Result<Guid>> Handle(RegisterUserCommand command, CancellationToken cancellationToken = default)
         {
-            try
-            {
-               var exists = await _userRepository.AnyAsync(u => u.EmailAddress.Value == command.EmailAddress);
+            var exists = await _userRepository.AnyAsync(u => u.EmailAddress.Value == command.EmailAddress);
 
-                if (exists)
-                    return Result<Guid>.Failure("E-mail já cadastrado verifique e tente novamente.");
+            if (exists)
+                return Result<Guid>.Failure("E-mail já cadastrado verifique e tente novamente.");
 
-                User user = _userRegistrationDomainService.CreateUser(command.FirstName, command.LastName, command.EmailAddress, command.MobilePhone);
+            User user = _userRegistrationDomainService.CreateUser(command.FirstName, command.LastName, command.EmailAddress, command.MobilePhone);
 
-                await _userRepository.AddAsync(user);
-                await _unitOfWork.CommitAsync();
+            await _userRepository.AddAsync(user);
+            await _unitOfWork.CommitAsync();
 
-                return Result<Guid>.Success(user.Id, "Cadastro realizado com sucesso, em breve enviaremos um e-mail de confirmação");
-            }
-            catch (Exception ex)
-            {
-                return Result<Guid>.Failure("Ocorreu um erro interno, verifique e tente novamente");
-            }
+            return Result<Guid>.Success(user.Id, "Cadastro realizado com sucesso, em breve enviaremos um e-mail de confirmação");
         }
     }
 }

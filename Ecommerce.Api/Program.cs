@@ -1,4 +1,4 @@
-
+using Ecommerce.Api.Middlewares;
 using Ecommerce.CrossCutting.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +14,8 @@ builder.Services.AddApplication();
 
 
 var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

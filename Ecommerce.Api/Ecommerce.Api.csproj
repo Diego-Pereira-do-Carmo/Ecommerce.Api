@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Middlewares\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Ecommerce.Application\Ecommerce.Application.csproj" />
     <ProjectReference Include="..\Ecommerce.CrossCutting\Ecommerce.CrossCutting.csproj" />
       </ItemGroup>
