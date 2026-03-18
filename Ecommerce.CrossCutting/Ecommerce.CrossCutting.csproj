@@ -8,6 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.PostgreSQL" Version="2.3.0" />
+    <PackageReference Include="Serilog.Sinks.PostgreSQL.Configuration" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

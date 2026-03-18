@@ -11,6 +11,7 @@ builder.Services.AddRepositories(builder.Configuration);
 builder.Services.AddSecurityServices();
 builder.Services.AddDomainServices();
 builder.Services.AddApplication();
+builder.AddLoggingConfiguration();
 
 
 var app = builder.Build();
