@@ -1,5 +1,4 @@
-﻿
-using Ecommerce.Domain.Entities;
+﻿using Ecommerce.Domain.Entities;
 using Ecommerce.Infrastructure.Persistence.Seeders.Base;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -18,12 +17,14 @@ namespace Ecommerce.Infrastructure.Persistence.Seeders
 
             foreach (var status in statusNameList)
             {
+                var id = GenerateDeterministicGuid(status);
+
                 builder.HasData(new
                 {
                     Id = GenerateDeterministicGuid(status),
                     Name = status,
+                    FriendlyCode = GenerateFriendlyCode(id, className),
                     Flag = GenerateFlag(status),
-                    FriendlyCode = $"{_prefix}{GenerateFriendlyCode(className, status)}",
                     Description = $"Define o estado de {status.ToLower()} no ciclo de vida global do pedido.",
                     CreatedOn = _defaultDate,
                     CreatedBy = _systemUserId,

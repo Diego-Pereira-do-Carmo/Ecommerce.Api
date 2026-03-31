@@ -1,5 +1,4 @@
-﻿
-using Ecommerce.Infrastructure.Exceptions;
+﻿using Ecommerce.Infrastructure.Exceptions;
 using Ecommerce.Infrastructure.Persistence.Seeders.SeederInterface;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Globalization;
@@ -33,23 +32,65 @@ namespace Ecommerce.Infrastructure.Persistence.Seeders.Base
             return "EC-" + BitConverter.ToString(hash, 0, 2).Replace("-", "");
         }
 
-        protected string GenerateFriendlyCode(string className, string statusName)
+        protected static string GenerateFriendlyCode(Guid id, string className)
         {
-            if (string.IsNullOrWhiteSpace(statusName))
-                throw new SeedingException(className, "Não foi possível gerar o Friendlycode determinístico a partir de nulo ou vazio.");
-
-            string suffix = GenerateDeterministicSuffixFriendlycode(statusName, 5);
-
-            return $"-{suffix}";
+            var prefix = ExtractPrefix(className);
+            var suffix = GenerateDeterministicSuffix(id.ToString(), 5);
+            return $"{prefix}-{suffix}";
         }
 
-        private string GenerateDeterministicSuffixFriendlycode(string input, int length)
+        private static string GenerateDeterministicSuffix(string input, int length)
         {
             using var md5 = MD5.Create();
             byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
+            var number = BitConverter.ToUInt32(hash, 0) % (uint)Math.Pow(10, length);
+            return number.ToString($"D{length}");
+        }
 
-            var numberString = string.Join("", hash.Select(b => (b % 10).ToString()));
-            return numberString.Substring(0, length);
+        private static string ExtractPrefix(string className)
+        {
+            if (className.Length <= 4)
+                return className.ToUpper();
+
+            var words = SplitPascalCase(className);
+            var prefix = new StringBuilder();
+            var charsPerWord = Math.Max(1, 4 / words.Count());
+
+            foreach (var word in words)
+            {
+                var take = Math.Min(charsPerWord, word.Length);
+                prefix.Append(word[..take]);
+                if (prefix.Length >= 4) break;
+            }
+
+            if (prefix.Length < 4)
+            {
+                var firstWord = words.First();
+                prefix.Append(firstWord[prefix.Length..Math.Min(4, firstWord.Length)]);
+            }
+
+            return prefix.ToString()[..4].ToUpper();
+        }
+
+        private static IEnumerable<string> SplitPascalCase(string input)
+        {
+            var words = new List<string>();
+            var current = new StringBuilder();
+
+            foreach (var c in input)
+            {
+                if (char.IsUpper(c) && current.Length > 0)
+                {
+                    words.Add(current.ToString());
+                    current.Clear();
+                }
+                current.Append(c);
+            }
+
+            if (current.Length > 0)
+                words.Add(current.ToString());
+
+            return words;
         }
 
         protected string GenerateFlag(string statusName)

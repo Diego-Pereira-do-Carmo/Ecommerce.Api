@@ -1,5 +1,4 @@
-﻿
-using Ecommerce.Domain.Entities;
+﻿using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Entities.Base;
 using Ecommerce.Infrastructure.Exceptions;
 using Ecommerce.Infrastructure.Persistence.Seeders.Base;

@@ -3,8 +3,10 @@ using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Interfaces;
 using Ecommerce.Domain.Interfaces.Repositories;
 using Ecommerce.Domain.Interfaces.Services;
+using Ecommerce.Domain.ValueObjects;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System.Linq.Expressions;
 
@@ -15,6 +17,7 @@ namespace Ecommerce.UnitTests.Application.Commands.Users.RegisterUser
         private readonly IUserRegistrationDomainService _userRegistrationDomainServiceMock;
         private readonly IUserRepository _userRepositoryMock;
         private readonly IUnitOfWork _uowMock;
+        private readonly ILogger<RegisterUserHandler> _loggerMock;
         private readonly RegisterUserHandler _registerUserHandler;
 
         public RegisterUserHandlerTest()
@@ -22,7 +25,9 @@ namespace Ecommerce.UnitTests.Application.Commands.Users.RegisterUser
             _userRegistrationDomainServiceMock = Substitute.For<IUserRegistrationDomainService>();
             _userRepositoryMock = Substitute.For<IUserRepository>();
             _uowMock = Substitute.For<IUnitOfWork>();
-            _registerUserHandler = new RegisterUserHandler(_userRegistrationDomainServiceMock, _userRepositoryMock, _uowMock);
+            _loggerMock = Substitute.For<ILogger<RegisterUserHandler>>();
+
+            _registerUserHandler = new RegisterUserHandler(_userRegistrationDomainServiceMock, _userRepositoryMock, _uowMock, _loggerMock);
         }
 
         [Fact]
@@ -34,7 +39,10 @@ namespace Ecommerce.UnitTests.Application.Commands.Users.RegisterUser
 
             var fakeUser = Substitute.For<User>();
 
-            _userRegistrationDomainServiceMock.CreateUser(command.FirstName, command.LastName, command.EmailAddress, command.MobilePhone)
+            var email = new EmailAddressValueObject(command.EmailAddress);
+            var mobilePhone = new PhoneNumberValueObject(command.MobilePhone);
+
+            _userRegistrationDomainServiceMock.CreateUser(command.FirstName, command.LastName, email, mobilePhone)
                                               .Returns(fakeUser);
 
             var result = await _registerUserHandler.Handle(command);
@@ -45,12 +53,11 @@ namespace Ecommerce.UnitTests.Application.Commands.Users.RegisterUser
                 result.IsFailure.Should().BeFalse();
                 result.Message.Should().Be("Cadastro realizado com sucesso, em breve enviaremos um e-mail de confirmação");
 
-                _userRegistrationDomainServiceMock.Received(1).CreateUser(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+                _userRegistrationDomainServiceMock.Received(1).CreateUser(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<EmailAddressValueObject>(), Arg.Any<PhoneNumberValueObject>());
                 await _userRepositoryMock.Received(1).AddAsync(fakeUser);
                 await _uowMock.Received(1).CommitAsync();
             }
         }
-
 
         [Fact]
         public async Task Given_ExistingEmail_Then_ReturnFailure()
@@ -67,60 +74,11 @@ namespace Ecommerce.UnitTests.Application.Commands.Users.RegisterUser
             {
                 result.IsSuccess.Should().BeFalse();
                 result.IsFailure.Should().BeTrue();
-                result.Message.Should().Be("E-mail já cadastrado verifique e tente novamente.");
+                result.Message.Should().Be("E-mail ou telefone já cadastrado verifique e tente novamente.");
 
-                _userRegistrationDomainServiceMock.DidNotReceive().CreateUser(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+                _userRegistrationDomainServiceMock.DidNotReceive().CreateUser(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<EmailAddressValueObject>(), Arg.Any<PhoneNumberValueObject>());
                 await _uowMock.DidNotReceive().CommitAsync();
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //[Fact]
-        //public async Task Given_EmailAlreadyExists_ShouldReturnFalse()
-        //{
-        //    var command = new RegisterUserCommand("Fulano", "de Tal", "fulano@email.com", "(11) 94002-8922", "Senha123!");
-
-        //    _userRepositoryMock.AnyAsync(Arg.Any<Expression<Func<User, bool>>>())
-        //                   .Returns(true);
-
-        //    var result = await _handler.Handle(command, CancellationToken.None);
-
-        //    result.Should().BeFalse();
-        //    await _uowMock.DidNotReceive().CommitAsync();
-        //}
-
-        //[Fact]
-        //public async Task Handle_WhenEmailDoesNotExist_ShouldReturnTrue()
-        //{
-        //    var command = new RegisterUserCommand("Ciclano", "de Tal", "ciclano@email.com", "(11) 94002-8933", "Senha@123!");
-
-        //    _userRepositoryMock.AnyAsync(Arg.Any<Expression<Func<User, bool>>>())
-        //                   .Returns(false);
-
-        //    _uowMock.CommitAsync().Returns(true);
-
-        //    var result = await _handler.Handle(command, CancellationToken.None);
-
-        //    result.Should().BeTrue();
-
-        //    await _userRepositoryMock.Received(1).InsertAsync(Arg.Any<User>());
-        //    await _uowMock.Received(1).CommitAsync();
-        //}
     }
 }

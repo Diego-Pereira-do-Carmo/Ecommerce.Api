@@ -1,8 +1,10 @@
 ﻿using Ecommerce.Domain.Common;
 using Ecommerce.Domain.Entities;
+using Ecommerce.Domain.Enums;
 using Ecommerce.Domain.Interfaces;
 using Ecommerce.Domain.Interfaces.Repositories;
 using Ecommerce.Domain.Interfaces.Services;
+using Ecommerce.Domain.ValueObjects;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -29,13 +31,15 @@ namespace Ecommerce.Application.Commands.Users.RegisterUser
 
         public async Task<Result<Guid>> Handle(RegisterUserCommand command, CancellationToken cancellationToken = default)
         {
-            throw new InvalidOperationException($"Falha crítica ao processar o cadastro do e-mail {command.EmailAddress}");
-            var exists = await _userRepository.AnyAsync(u => u.EmailAddress.Value == command.EmailAddress);
+            var existsUser = await _userRepository.AnyAsync(u => u.EmailAddress.Value == command.EmailAddress || u.Mobilephone.Value == command.MobilePhone);
 
-            if (exists)
-                return Result<Guid>.Failure("E-mail já cadastrado verifique e tente novamente.");
+            if (existsUser)
+                return Result<Guid>.Failure("E-mail ou telefone já cadastrado verifique e tente novamente.");
 
-            User user = _userRegistrationDomainService.CreateUser(command.FirstName, command.LastName, command.EmailAddress, command.MobilePhone);
+            var email = new EmailAddressValueObject(command.EmailAddress);
+            var mobilePhone = new PhoneNumberValueObject(command.MobilePhone);
+
+            User user = _userRegistrationDomainService.CreateUser(command.FirstName, command.LastName, email, mobilePhone);
 
             await _userRepository.AddAsync(user);
             await _unitOfWork.CommitAsync();

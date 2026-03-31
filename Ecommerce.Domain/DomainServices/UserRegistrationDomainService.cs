@@ -15,7 +15,7 @@ namespace Ecommerce.Domain.DomainServices
             _passwordService = passwordService;
         }
 
-        public User CreateUser(string firstName, string lastName, string emailAddress, string mobilePhone)
+        public User CreateUser(string firstName, string lastName, EmailAddressValueObject emailAddress, PhoneNumberValueObject mobilePhone)
         {
             Guard.AgainstNullOrEmpty(firstName, nameof(firstName));
             Guard.AgainstNullOrEmpty(lastName, nameof(lastName));
@@ -24,10 +24,7 @@ namespace Ecommerce.Domain.DomainServices
             Guard.AgainstWeakPassword(password, nameof(password));
             var hash = _passwordService.HashPassword(password);
 
-            var emailVO = new EmailAddressValueObject(emailAddress);
-            var mobilePhoneVO = new PhoneNumberValueObject(mobilePhone);
-
-            return new User(emailVO.GetUserName(), firstName, lastName, emailVO, mobilePhoneVO, hash);
+            return new User(emailAddress.GetUserName(), firstName, lastName, emailAddress, mobilePhone, hash);
         }
     }
 }

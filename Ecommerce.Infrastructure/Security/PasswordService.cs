@@ -1,5 +1,4 @@
-﻿
-using Ecommerce.Domain.Interfaces.Security;
+﻿using Ecommerce.Domain.Interfaces.Security;
 using System.Security.Cryptography;
 using BC = BCrypt.Net.BCrypt;
 
@@ -16,7 +15,7 @@ namespace Ecommerce.Infrastructure.Security
             const string upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";
             const string lower = "abcdefghijkmnpqrstuvwxyz";
             const string digits = "0123456789";
-            const string specials = "!@#$%^&*?_-";
+            const string specials = "!@#$%&*";
             const string allChars = upper + lower + digits + specials;
 
             var passwordChars = new List<char>

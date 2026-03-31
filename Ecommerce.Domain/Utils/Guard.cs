@@ -1,12 +1,11 @@
-﻿
-using Ecommerce.Domain.Exceptions;
+﻿using Ecommerce.Domain.Exceptions;
 using System.Text.RegularExpressions;
 
 namespace Ecommerce.Domain.Utils
 {
     public static class Guard
     {
-        private static readonly Regex _passwordRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*?]).{8,}$", RegexOptions.Compiled);
+        private static readonly Regex _passwordRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*]).{8,}$", RegexOptions.Compiled);
         public static void AgainstNullOrEmpty(string? value, string fieldName)
         {
             if (string.IsNullOrWhiteSpace(value))
