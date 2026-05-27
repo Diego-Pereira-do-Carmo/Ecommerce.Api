@@ -1,6 +1,7 @@
 ﻿
 using Ecommerce.Domain.Entities;
 using Ecommerce.Infrastructure.Persistence.EntitiesConfigurations.Base;
+using Ecommerce.Infrastructure.Persistence.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -32,6 +33,8 @@ namespace Ecommerce.Infrastructure.Persistence.EntitiesConfigurations
             builder.HasIndex(a => a.Name)
                    .IsUnique()
                    .HasDatabaseName("ix_access_profile_name");
+
+            new AccessProfileSeeder().Seed(builder);
         }
     }
 }

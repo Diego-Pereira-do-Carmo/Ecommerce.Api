@@ -29,7 +29,7 @@ namespace Ecommerce.Domain.Entities
         {
         }
 
-        internal User(string userName, string firstName, string lastName, EmailAddressValueObject email, PhoneNumberValueObject mobile, string passwordHash)
+        internal User(string userName, string firstName, string lastName, Guid accessProfileId, EmailAddressValueObject email, PhoneNumberValueObject mobile, string passwordHash)
         {
             Guard.AgainstNullOrEmpty(userName, nameof(userName));
             Guard.AgainstNullOrEmpty(firstName, nameof(firstName));
@@ -45,6 +45,20 @@ namespace Ecommerce.Domain.Entities
             PasswordHash = passwordHash;
             AccessFailedCount = 0;
             IsEmailAddressConfirmed = false;
+
+            AddAccessProfile(accessProfileId);
+        }
+
+        public void AddAccessProfile(Guid accessProfileId)
+        {
+            Guard.AgainstEmptyGuid(accessProfileId, "accessProfileId");
+
+            var hasProfile = AccessProfileUsers.Any(p => p.AccessProfileId == accessProfileId);
+
+            if (!hasProfile)
+            {
+                AccessProfileUsers.Add(new AccessProfileUser(this.Id, accessProfileId));
+            }
         }
     }
 }

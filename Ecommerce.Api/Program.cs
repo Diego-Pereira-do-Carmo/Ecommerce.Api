@@ -4,6 +4,7 @@ using Ecommerce.CrossCutting.DependencyInjection.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddJwtSecurity(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -14,5 +14,6 @@ namespace Ecommerce.Domain.Interfaces.Base
         Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
         Task<IEnumerable<T>> FindWithIncludesAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default, params Expression<Func<T, object?>>[] includes);
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
+        Task<T?> GetByFriendlyCode(string friendlycode, CancellationToken cancellationToken = default);
     }
 }

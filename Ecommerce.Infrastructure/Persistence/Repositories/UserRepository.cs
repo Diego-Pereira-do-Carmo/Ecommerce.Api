@@ -17,7 +17,7 @@ namespace Ecommerce.Infrastructure.Persistence.Repositories
 
         public async Task<User?> GetByEmailAsync(EmailAddressValueObject emailVO, CancellationToken cancellationToken = default)
         {
-            return await DbSetContext.FirstOrDefaultAsync(u => u.EmailAddress == emailVO, cancellationToken);
+            return await DbSetContext.FirstOrDefaultAsync(u => u.EmailAddress.Value == emailVO.Value, cancellationToken);
         }
     }
 }

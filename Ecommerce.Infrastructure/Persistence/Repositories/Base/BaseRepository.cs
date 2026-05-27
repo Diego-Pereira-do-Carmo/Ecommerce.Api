@@ -1,11 +1,13 @@
-﻿using Ecommerce.Domain.Interfaces.Base;
+﻿using Ecommerce.Domain.Entities.Base;
+using Ecommerce.Domain.Interfaces.Base;
 using Ecommerce.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Threading;
 
 namespace Ecommerce.Infrastructure.Persistence.Repositories.Base
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly EcommerceDbContext EcommerceDbContext;
         protected readonly DbSet<T> DbSetContext;
@@ -15,7 +17,6 @@ namespace Ecommerce.Infrastructure.Persistence.Repositories.Base
             EcommerceDbContext = ecommerceDbContext;
             DbSetContext = EcommerceDbContext.Set<T>();
         }
-
 
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
         {
@@ -55,6 +56,11 @@ namespace Ecommerce.Infrastructure.Persistence.Repositories.Base
         public void Update(T entity)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<T?> GetByFriendlyCode(string friendlycode, CancellationToken cancellationToken = default)
+        {
+            return await DbSetContext.FirstOrDefaultAsync(x => x.FriendlyCode == friendlycode, cancellationToken);
         }
     }
 }
